@@ -25,16 +25,12 @@
          if (text.toLocaleLowerCase() in survey) {
              return  ++survey[text.toLocaleLowerCase()];
          }
-         return 'Vote option Internet Explorer doesn\'t exist';
+         return `Vote option ${text} doesn\'t exist`;
      },
 
       showVotes () {
-          let space = 0;
-          for (let i = 0; i < array.length; i++) {
-              if(space < array[i].length) {
-                  space = array[i].length;
-              }
-          }
+          const space = array.reduce((max, item) => Math.max(max, item.length), 0);
+
           array.forEach((item) => {
               console.log(item.toLowerCase().padEnd(space, ' ') + ' ' + '*'.repeat(survey[item.toLowerCase()]));
           })
